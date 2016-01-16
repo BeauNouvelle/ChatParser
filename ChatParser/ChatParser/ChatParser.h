@@ -2,7 +2,7 @@
 //  ChatParser.h
 //  ChatParser
 //
-//  Created by Beau Young on 16/01/2016.
+//  Created by Beau Nouvelle on 16/01/2016.
 //  Copyright © 2016 Beau Nouvelle. All rights reserved.
 //
 

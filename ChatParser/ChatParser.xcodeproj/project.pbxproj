@@ -10,6 +10,8 @@
 		7DE541151C4A2E6C00E58BD8 /* ChatParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DE541141C4A2E6C00E58BD8 /* ChatParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7DE5411C1C4A2E6C00E58BD8 /* ChatParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */; };
 		7DE541211C4A2E6C00E58BD8 /* ChatParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */; };
+		7DE5412D1C4A323700E58BD8 /* ChatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412C1C4A323700E58BD8 /* ChatParser.swift */; };
+		7DE5412F1C4A78B100E58BD8 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		7DE5411B1C4A2E6C00E58BD8 /* ChatParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatParserTests.swift; sourceTree = "<group>"; };
 		7DE541221C4A2E6C00E58BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DE5412C1C4A323700E58BD8 /* ChatParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatParser.swift; sourceTree = "<group>"; };
+		7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		7DE541131C4A2E6C00E58BD8 /* ChatParser */ = {
 			isa = PBXGroup;
 			children = (
+				7DE5412B1C4A2F8700E58BD8 /* Source */,
 				7DE541141C4A2E6C00E58BD8 /* ChatParser.h */,
 				7DE541161C4A2E6C00E58BD8 /* Info.plist */,
 			);
@@ -84,6 +89,15 @@
 				7DE541221C4A2E6C00E58BD8 /* Info.plist */,
 			);
 			path = ChatParserTests;
+			sourceTree = "<group>";
+		};
+		7DE5412B1C4A2F8700E58BD8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5412C1C4A323700E58BD8 /* ChatParser.swift */,
+				7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +208,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE5412D1C4A323700E58BD8 /* ChatParser.swift in Sources */,
+				7DE5412F1C4A78B100E58BD8 /* DictionaryExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +324,7 @@
 		7DE541261C4A2E6C00E58BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +335,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.ChatParser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7DE541271C4A2E6C00E58BD8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -376,6 +395,7 @@
 				7DE541271C4A2E6C00E58BD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DE541281C4A2E6C00E58BD8 /* Build configuration list for PBXNativeTarget "ChatParserTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +404,7 @@
 				7DE5412A1C4A2E6C00E58BD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
