@@ -11,7 +11,7 @@ import Foundation
 extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
     
     var jsonString: String? {
-        if let dict = (self as? AnyObject) as? Dictionary<String, AnyObject> {
+        if let dict = (self as? AnyObject) as? [String:AnyObject] {
             do {
                 let data = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.PrettyPrinted)
                 if let string = String(data: data, encoding: NSUTF8StringEncoding) {

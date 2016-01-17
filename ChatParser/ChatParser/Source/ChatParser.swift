@@ -17,6 +17,9 @@ struct ChatParser {
         case Any
     }
     
+    /**
+     
+    */
     func extractContent(content: Content..., fromString string: String) -> String? {
         
         var jsonDictionary = [String:AnyObject]()
@@ -44,8 +47,37 @@ struct ChatParser {
         return mentions.count > 0 ? mentions : nil
     }
     
-    private func extractEmoticons(fromString string: String) -> [String] {
-        return ["megusta","coffee"]
+    private func extractEmoticons(fromString string: String) -> [String]? {
+        let searchPattern = "\\(([^\\s][^\\)]+)\\)"
+        var emoticons = [String]()
+        
+        do {
+            let regex = try NSRegularExpression(pattern: searchPattern, options: NSRegularExpressionOptions.CaseInsensitive)
+            let matches = regex.matchesInString(string, options: [], range: NSMakeRange(0, string.characters.count))
+            
+            for match in matches {
+                let range = match.rangeAtIndex(1)
+                if let swiftRange = rangeFromNSRange(range, forString: string) {
+                    emoticons.append(string.substringWithRange(swiftRange))
+                }
+            }
+        } catch {
+            // regex was bad!
+        }
+        return emoticons
+    }
+    
+    func rangeFromNSRange(nsRange: NSRange, forString str: String) -> Range<String.Index>? {
+        let fromUTF16 = str.utf16.startIndex.advancedBy(nsRange.location, limit: str.utf16.endIndex)
+        let toUTF16 = fromUTF16.advancedBy(nsRange.length, limit: str.utf16.endIndex)
+        
+        
+        if let from = String.Index(fromUTF16, within: str),
+            let to = String.Index(toUTF16, within: str) {
+                return from ..< to
+        }
+        
+        return nil
     }
     
     private func extractLinks(fromString string: String) -> [[String:AnyObject]] {

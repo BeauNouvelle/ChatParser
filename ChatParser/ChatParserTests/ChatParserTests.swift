@@ -46,9 +46,9 @@ class ChatParserTests: XCTestCase {
         XCTAssertEqual(actualOutput, expectedOutput)
     }
     
-    func testCombination() {
+    func testAll() {
         let input = "@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016"
-        let expectedOutput = "{\n  \"emoticons\" : [\n    \"megusta\",\n    \"coffee\"\n  ],\n  \"links\" : [\n    {\n      \"title\" : \"NBC Olympics | 2014 NBC Olympics in Sochi Russia\",\n      \"url\" : \"http:\\/\\/www.nbcolympics.com\"\n    }\n  ],\n  \"mentions\" : [\n    \"chris\"\n  ]\n}"
+        let expectedOutput = "{\n  \"emoticons\" : [\n    \"success\"\n  ],\n  \"links\" : [\n    {\n      \"title\" : \"NBC Olympics | 2014 NBC Olympics in Sochi Russia\",\n      \"url\" : \"http:\\/\\/www.nbcolympics.com\"\n    }\n  ],\n  \"mentions\" : [\n    \"bob\",\n    \"john\"\n  ]\n}"
         
         let actualOutput = ChatParser().extractContent(.Any, fromString: input)
         XCTAssertEqual(actualOutput, expectedOutput)

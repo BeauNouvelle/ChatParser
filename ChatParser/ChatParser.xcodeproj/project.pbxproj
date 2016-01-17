@@ -12,6 +12,7 @@
 		7DE541211C4A2E6C00E58BD8 /* ChatParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */; };
 		7DE5412D1C4A323700E58BD8 /* ChatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412C1C4A323700E58BD8 /* ChatParser.swift */; };
 		7DE5412F1C4A78B100E58BD8 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */; };
+		7DE541311C4B244200E58BD8 /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		7DE541221C4A2E6C00E58BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DE5412C1C4A323700E58BD8 /* ChatParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatParser.swift; sourceTree = "<group>"; };
 		7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
+		7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */,
+				7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */,
 				7DE541221C4A2E6C00E58BD8 /* Info.plist */,
 			);
 			path = ChatParserTests;
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE541211C4A2E6C00E58BD8 /* ChatParserTests.swift in Sources */,
+				7DE541311C4B244200E58BD8 /* DictionaryExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
