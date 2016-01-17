@@ -36,52 +36,53 @@ struct ChatParser {
         return jsonDictionary.jsonString
     }
     
-    
     private func extractMentions(fromString string: String) -> [String]? {
-        let words = string.componentsSeparatedByString(" ")
-        var mentions = [String]()
-        
-        for word in words.filter({$0.hasPrefix("@")}) {
-            mentions.append(String(word.characters.dropFirst()))
-        }
+        let regexPattern = "\\B@([a-z0-9_-]+)"
+        let mentions = performRegexOnString(string, withPattern: regexPattern)
+
         return mentions.count > 0 ? mentions : nil
     }
     
     private func extractEmoticons(fromString string: String) -> [String]? {
-        let searchPattern = "\\(([^\\s][^\\)]+)\\)"
-        var emoticons = [String]()
+        let regexPattern = "\\(([^\\s][^\\)]+)\\)"
+        let emoticons = performRegexOnString(string, withPattern: regexPattern)
         
+        return emoticons.count > 0 ? emoticons : nil
+    }
+    
+    private func extractLinks(fromString string: String) -> [[String:AnyObject]] {
+        return [["url": "http://www.nbcolympics.com","title": "NBC Olympics | 2014 NBC Olympics in Sochi Russia"]]
+    }
+    
+    // MARK: Regex
+    private func performRegexOnString(string: String, withPattern pattern: String) -> [String]! {
+        var results = [String]()
+
         do {
-            let regex = try NSRegularExpression(pattern: searchPattern, options: NSRegularExpressionOptions.CaseInsensitive)
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
             let matches = regex.matchesInString(string, options: [], range: NSMakeRange(0, string.characters.count))
             
             for match in matches {
                 let range = match.rangeAtIndex(1)
                 if let swiftRange = rangeFromNSRange(range, forString: string) {
-                    emoticons.append(string.substringWithRange(swiftRange))
+                    results.append(string.substringWithRange(swiftRange))
                 }
             }
         } catch {
             // regex was bad!
         }
-        return emoticons
+        return results
     }
     
-    func rangeFromNSRange(nsRange: NSRange, forString str: String) -> Range<String.Index>? {
+    private func rangeFromNSRange(nsRange: NSRange, forString str: String) -> Range<String.Index>? {
         let fromUTF16 = str.utf16.startIndex.advancedBy(nsRange.location, limit: str.utf16.endIndex)
         let toUTF16 = fromUTF16.advancedBy(nsRange.length, limit: str.utf16.endIndex)
-        
         
         if let from = String.Index(fromUTF16, within: str),
             let to = String.Index(toUTF16, within: str) {
                 return from ..< to
         }
-        
         return nil
-    }
-    
-    private func extractLinks(fromString string: String) -> [[String:AnyObject]] {
-        return [["url": "http://www.nbcolympics.com","title": "NBC Olympics | 2014 NBC Olympics in Sochi Russia"]]
     }
     
 }
