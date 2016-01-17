@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChatParser {
+struct ChatParser {
     
     enum Content {
         case Mentions
@@ -17,7 +17,7 @@ class ChatParser {
         case Any
     }
     
-    class func extractContent(content: Content..., fromString string: String) -> String? {
+    func extractContent(content: Content..., fromString string: String) -> String? {
         
         var jsonDictionary = [String:AnyObject]()
         
@@ -34,17 +34,22 @@ class ChatParser {
     }
     
     
-    private class func extractMentions(fromString string: String) -> [String] {
-        return ["chris"]
+    private func extractMentions(fromString string: String) -> [String]? {
+        let words = string.componentsSeparatedByString(" ")
+        var mentions = [String]()
+        
+        for word in words.filter({$0.hasPrefix("@")}) {
+            mentions.append(String(word.characters.dropFirst()))
+        }
+        return mentions.count > 0 ? mentions : nil
     }
     
-    private class func extractEmoticons(fromString string: String) -> [String] {
+    private func extractEmoticons(fromString string: String) -> [String] {
         return ["megusta","coffee"]
     }
     
-    private class func extractLinks(fromString string: String) -> [[String:AnyObject]] {
+    private func extractLinks(fromString string: String) -> [[String:AnyObject]] {
         return [["url": "http://www.nbcolympics.com","title": "NBC Olympics | 2014 NBC Olympics in Sochi Russia"]]
     }
-    
     
 }

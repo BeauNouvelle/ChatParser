@@ -24,25 +24,34 @@ class ChatParserTests: XCTestCase {
     // MARK: Tests
     func testMentions() {
         let input = "@chris you around?"
-        let expectedOutput = "{\"mentions\":[\"chris\"]}"
+        let expectedOutput = "{\n  \"mentions\" : [\n    \"chris\"\n  ]\n}"
 
-        let actualOutput = ChatParser.extractContent(.Mentions, fromString: input)
+        let actualOutput = ChatParser().extractContent(.Mentions, fromString: input)
         XCTAssertEqual(actualOutput, expectedOutput)
     }
     
     func testEmoticons() {
         let input = "Good morning! (megusta) (coffee)"
+        let expectedOutput = "{\n  \"emoticons\" : [\n    \"megusta\",\n    \"coffee\"\n  ]\n}"
         
+        let actualOutput = ChatParser().extractContent(.Emoticons, fromString: input)
+        XCTAssertEqual(actualOutput, expectedOutput)
     }
     
     func testLinks() {
         let input = "Olympics are starting soon; http://www.nbcolympics.com"
+        let expectedOutput = "{\n  \"links\" : [\n    {\n      \"title\" : \"NBC Olympics | 2014 NBC Olympics in Sochi Russia\",\n      \"url\" : \"http:\\/\\/www.nbcolympics.com\"\n    }\n  ]\n}"
         
+        let actualOutput = ChatParser().extractContent(.Links, fromString: input)
+        XCTAssertEqual(actualOutput, expectedOutput)
     }
     
     func testCombination() {
         let input = "@bob @john (success) such a cool feature; https://twitter.com/jdorfman/status/430511497475670016"
+        let expectedOutput = "{\n  \"emoticons\" : [\n    \"megusta\",\n    \"coffee\"\n  ],\n  \"links\" : [\n    {\n      \"title\" : \"NBC Olympics | 2014 NBC Olympics in Sochi Russia\",\n      \"url\" : \"http:\\/\\/www.nbcolympics.com\"\n    }\n  ],\n  \"mentions\" : [\n    \"chris\"\n  ]\n}"
         
+        let actualOutput = ChatParser().extractContent(.Any, fromString: input)
+        XCTAssertEqual(actualOutput, expectedOutput)
     }
     
 }
