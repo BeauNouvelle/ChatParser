@@ -51,6 +51,12 @@ struct ChatParser {
     }
     
     private func extractLinks(fromString string: String) -> [[String:AnyObject]] {
+        let regexPattern = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])"
+        let urls = performRegexOnString(string, withPattern: regexPattern)
+        
+        // call url, in response get title then return appropriate result.
+        print(urls)
+        
         return [["url": "http://www.nbcolympics.com","title": "NBC Olympics | 2014 NBC Olympics in Sochi Russia"]]
     }
     
