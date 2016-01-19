@@ -17,8 +17,7 @@ public struct ChatParser {
         case Any
     }
     
-    public var prettyJSON: String?
-    public var JSON: String?
+    public init(){}
     
     /**
      Parses chat text and pulls out any combination of @username's, (emoticons), links and web page titles.
@@ -26,7 +25,7 @@ public struct ChatParser {
      - parameter string: The `string` you wish to extract the content from.
      - returns: A string in JSON format.
     */
-    public init(extractContent content: Content..., fromString string: String) {
+    public func extractContent(content: Content..., fromString string: String, prettyJSON: String? -> ()) {
         
         var jsonDictionary = [String:AnyObject]()
         
@@ -41,14 +40,15 @@ public struct ChatParser {
             }
         }
         if content.contains([.Links, .Any].contains) {
-            if let links = extractWebData(fromString: string) {
-                print(links)
-                jsonDictionary["links"] = links
-            }
+            extractWebData(fromString: string, webData: { (webData) -> () in
+                if let links = webData {
+                    jsonDictionary["links"] = links
+                }
+                prettyJSON(jsonDictionary.prettyJSON)
+            })
+        } else {
+            prettyJSON(jsonDictionary.prettyJSON)
         }
-        
-        prettyJSON = jsonDictionary.prettyJSON    // Pretty format to match the brief.
-        JSON = jsonDictionary.JSON                // another for good luck.
     }
 
     // MARK: - Private Functions -
@@ -81,31 +81,54 @@ public struct ChatParser {
      - parameter string: 
      - returns: An 'array' of dictionary objects containing both a webpage link and webpage title if it can be found.
     */
-    private func extractWebData(fromString string: String) -> [[String:AnyObject]]? {
+    private func extractWebData(fromString string: String, webData:[[String:AnyObject]]? -> ()) {
         let regexPattern = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])"
         var links = [[String:AnyObject]]()
         
         guard let urls = performRegexOnString(string, withPattern: regexPattern) where urls.count > 0 else {
-            return nil
+            webData(nil)
+            return
         }
         
+        let group = dispatch_group_create()
+        
         for url in urls {
-            
+            dispatch_group_enter(group)
+
             var linkContent = [String:AnyObject]()
             linkContent["url"] = url
-
-            do {
-                let htmlString = try String(contentsOfURL: NSURL(string: url)!, encoding: NSASCIIStringEncoding)
-                let pageTitle = extractPageTitle(htmlString)
-                print(pageTitle)
-                linkContent["title"] = pageTitle
-            } catch {
-                // TODO: Work out requirements for what happens when we can't load a URL. 
-                // Currently only the link will be returned for that url. No title if it won't load.
-            }
-            links.append(linkContent)
+            
+            fetchHTML(NSURL(string: url)!, html: { (htmlString) -> () in
+                
+                if let html = htmlString {
+                    let pageTitle = self.extractPageTitle(html)
+                    linkContent["title"] = pageTitle
+                }
+                
+                links.append(linkContent)
+                dispatch_group_leave(group)
+            })
+            
         }
-        return links
+        
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            webData(links)
+        }
+        
+    }
+    
+    private func fetchHTML(url: NSURL, html: (String?) -> ()) {
+
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
+            
+            guard let data = data else {
+                html(nil)
+                return
+            }
+            
+            html(String(data: data, encoding: NSASCIIStringEncoding))
+            
+        }.resume()
     }
     
     /**

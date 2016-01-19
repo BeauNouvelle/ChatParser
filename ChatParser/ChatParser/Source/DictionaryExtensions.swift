@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
+extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject {
     
     var prettyJSON: String? {
         if let dict = (self as? AnyObject) as? [String:AnyObject] {
@@ -23,18 +23,5 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
         }
         return nil
     }
-    
-    var JSON: String? {
-        if let dict = (self as? AnyObject) as? [String:AnyObject] {
-            do {
-                let data = try NSJSONSerialization.dataWithJSONObject(dict, options: [])
-                if let string = String(data: data, encoding: NSUTF8StringEncoding) {
-                    return string
-                }
-            } catch {
-                print(error)
-            }
-        }
-        return nil
-    }
+
 }

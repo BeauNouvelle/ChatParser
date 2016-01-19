@@ -26,16 +26,18 @@ class ChatParserTests: XCTestCase {
         let input = "@chris you around?"
         let expectedOutput = "{\n  \"mentions\" : [\n    \"chris\"\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Mentions, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        ChatParser().extractContent(.Mentions, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+        }
     }
     
     func testExtractEmoticons() {
         let input = "Good morning! (megusta) (coffee)"
         let expectedOutput = "{\n  \"emoticons\" : [\n    \"megusta\",\n    \"coffee\"\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Emoticons, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        ChatParser().extractContent(.Emoticons, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+        }
     }
     
     // Best way to test web calls is to mock them out and use some dependency injection so that they are always reliable and will never change.
@@ -45,17 +47,28 @@ class ChatParserTests: XCTestCase {
         let input = "Found this great website https://beaunouvelle.com"
         let expectedOutput = "{\n  \"links\" : [\n    {\n      \"title\" : \"Beau Nouvelle\",\n      \"url\" : \"https:\\/\\/beaunouvelle.com\"\n    }\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Links, fromString: input).prettyJSON
-        print(actualOutput)
-        XCTAssertEqual(actualOutput, expectedOutput)
+        let expectation = expectationWithDescription("Network Expectation")
+        
+        ChatParser().extractContent(.Links, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     func testAllTypes() {
         let input = "@beaunouvelle, I love (megusta) what you posted on your blog https://beaunouvelle.com/projects/"
         let expectedOutput = "{\n  \"emoticons\" : [\n    \"megusta\"\n  ],\n  \"links\" : [\n    {\n      \"title\" : \"Beau Nouvelle - iOS Developer Portfolio\",\n      \"url\" : \"https:\\/\\/beaunouvelle.com\\/projects\\/\"\n    }\n  ],\n  \"mentions\" : [\n    \"beaunouvelle\"\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Any, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        let expectation = expectationWithDescription("Network Expectation")
+
+        ChatParser().extractContent(.Any, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     // MARK: Fail tests
@@ -63,39 +76,54 @@ class ChatParserTests: XCTestCase {
         let input = "chris you around?"
         let expectedOutput = "{\n\n}"
         
-        let actualOutput = ChatParser(extractContent: .Mentions, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        ChatParser().extractContent(.Mentions, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+        }
     }
     
     func testExtractNoEmoticons() {
         let input = "Good morning!"
         let expectedOutput = "{\n\n}"
         
-        let actualOutput = ChatParser(extractContent: .Emoticons, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        ChatParser().extractContent(.Emoticons, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+        }
     }
     
     func testExtractNoLink() {
         let input = "Found this great website"
         let expectedOutput = "{\n\n}"
         
-        let actualOutput = ChatParser(extractContent: .Links, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        ChatParser().extractContent(.Links, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+        }
     }
     
     func testExtractPageTitleFromFakeURL() {
         let input = "Found this great website https://nosuchwebsiteexists.com"
         let expectedOutput = "{\n  \"links\" : [\n    {\n      \"url\" : \"https:\\/\\/nosuchwebsiteexists.com\"\n    }\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Links, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        let expectation = expectationWithDescription("Network Expectation")
+        
+        ChatParser().extractContent(.Links, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     func testExtractPageTitleFromImageURL() {
         let input = "Check out this image https://assets-cdn.github.com/images/modules/jobs/logo.png"
         let expectedOutput = "{\n  \"links\" : [\n    {\n      \"url\" : \"https:\\/\\/assets-cdn.github.com\\/images\\/modules\\/jobs\\/logo.png\"\n    }\n  ]\n}"
         
-        let actualOutput = ChatParser(extractContent: .Links, fromString: input).prettyJSON
-        XCTAssertEqual(actualOutput, expectedOutput)
+        let expectation = expectationWithDescription("Network Expectation")
+
+        ChatParser().extractContent(.Links, fromString: input) { (actualOutput) -> () in
+            XCTAssertEqual(actualOutput, expectedOutput)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
 }
