@@ -6,6 +6,7 @@ Fully tested and documented API.
 ##Example Project##
 Download the source code and run the example app to see ChatParser in action.
 
+![screenshot](/Example/examplescreen.png)
 
 ##Usage##
 After linking the *ChatParser.framework* to your app you can start parsing your chat text using a single function.
@@ -21,6 +22,25 @@ func textFieldShouldReturn(textField: UITextField) -> Bool {
     return true
 }
     
+```
+
+You should then end up with an output like this:
+
+```
+{
+   "emoticons" :[
+      "heart"
+   ],
+   "links" : [
+      {
+         "title" : "Beau Nouvelle",
+         "url" : "https:\/\/beaunouvelle.com"
+      }
+   ],
+   "mentions" : [
+      "Beau"
+   ]
+}
 ```
 
 ###Content###
