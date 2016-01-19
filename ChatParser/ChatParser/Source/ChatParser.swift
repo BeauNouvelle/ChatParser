@@ -18,7 +18,10 @@ struct ChatParser {
     }
     
     /**
-     
+     Parses chat text and pulls out any combination of @username's, (emoticons), links and web page titles.
+     - parameter content: The type of content you wish to extract.
+     - parameter string: The `string` you wish to extract the content from.
+     - returns: A string in JSON format.
     */
     func extractContent(content: Content..., fromString string: String) -> String? {
         
@@ -35,33 +38,72 @@ struct ChatParser {
         }
         return jsonDictionary.jsonString
     }
-    
+
     private func extractMentions(fromString string: String) -> [String]? {
         let regexPattern = "\\B@([a-z0-9_-]+)"
         let mentions = performRegexOnString(string, withPattern: regexPattern)
 
-        return mentions.count > 0 ? mentions : nil
+        return mentions?.count > 0 ? mentions : nil
     }
     
     private func extractEmoticons(fromString string: String) -> [String]? {
         let regexPattern = "\\(([^\\s][^\\)]+)\\)"
         let emoticons = performRegexOnString(string, withPattern: regexPattern)
         
-        return emoticons.count > 0 ? emoticons : nil
+        return emoticons?.count > 0 ? emoticons : nil
     }
     
-    private func extractLinks(fromString string: String) -> [[String:AnyObject]] {
+    private func extractLinks(fromString string: String) -> [[String:AnyObject]]? {
         let regexPattern = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])"
-        let urls = performRegexOnString(string, withPattern: regexPattern)
+        var links = [[String:AnyObject]]()
         
-        // call url, in response get title then return appropriate result.
-        print(urls)
+        guard let urls = performRegexOnString(string, withPattern: regexPattern) else {
+            return nil
+        }
         
-        return [["url": "http://www.nbcolympics.com","title": "NBC Olympics | 2014 NBC Olympics in Sochi Russia"]]
+        for url in urls {
+            
+            var linkContent = [String:AnyObject]()
+            linkContent["url"] = url
+
+            do {
+                let htmlString = try String(contentsOfURL: NSURL(string: url)!, encoding: NSASCIIStringEncoding)
+                let pageTitle = extractPageTitle(htmlString)
+                print(pageTitle)
+                linkContent["title"] = pageTitle
+            } catch {
+                // TODO: Work out requirements for what happens when we can't load a URL. Currently only the link will be returned for that url. No title if it won't load.
+            }
+            
+            links.append(linkContent)
+        }
+        return links
+    }
+    
+    /**
+     Extracts a title (if it exists) from a string of html content.
+     - parameter html: The html string you wish to extract the title from.
+     - returns: The page title if one is found, otherwise returns nil.
+    */
+    func extractPageTitle(html: NSString) -> String? {
+        let start = "<title>"
+        let end = "</title>"
+        
+        let startRange = NSString(string: html).rangeOfString(start)
+        let endRange = NSString(string: html).rangeOfString(end)
+        
+        guard startRange.location != NSNotFound else {
+            return nil
+        }
+
+        let substring = html.substringWithRange(NSMakeRange(startRange.location + 7, endRange.location - startRange.location - 7))
+        let trimmedString = substring.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        return trimmedString
     }
     
     // MARK: Regex
-    private func performRegexOnString(string: String, withPattern pattern: String) -> [String]! {
+    private func performRegexOnString(string: String, withPattern pattern: String) -> [String]? {
         var results = [String]()
 
         do {
@@ -75,7 +117,7 @@ struct ChatParser {
                 }
             }
         } catch {
-            // regex was bad!
+            return nil
         }
         return results
     }
