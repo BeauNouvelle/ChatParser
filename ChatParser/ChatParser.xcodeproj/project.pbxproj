@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D2545151C4E1050006932BC /* beaunouvelle.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545141C4E1050006932BC /* beaunouvelle.html */; };
 		7D25451D1C4E1F8A006932BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25451C1C4E1F8A006932BC /* AppDelegate.swift */; };
 		7D25451F1C4E1F8A006932BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25451E1C4E1F8A006932BC /* ViewController.swift */; };
 		7D2545221C4E1F8A006932BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545201C4E1F8A006932BC /* Main.storyboard */; };
@@ -55,7 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7D2545141C4E1050006932BC /* beaunouvelle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = beaunouvelle.html; sourceTree = "<group>"; };
 		7D25451A1C4E1F8A006932BC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D25451C1C4E1F8A006932BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D25451E1C4E1F8A006932BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,14 +99,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7D2545131C4E1050006932BC /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				7D2545141C4E1050006932BC /* beaunouvelle.html */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		7D25451B1C4E1F8A006932BC /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +145,6 @@
 		7DE5411F1C4A2E6C00E58BD8 /* ChatParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				7D2545131C4E1050006932BC /* Resources */,
 				7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */,
 				7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */,
 				7DE541221C4A2E6C00E58BD8 /* Info.plist */,
@@ -304,7 +293,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D2545151C4E1050006932BC /* beaunouvelle.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +545,7 @@
 				7D25452B1C4E1F8A006932BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DE5410B1C4A2E6C00E58BD8 /* Build configuration list for PBXProject "ChatParser" */ = {
 			isa = XCConfigurationList;
