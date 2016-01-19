@@ -7,12 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D2545151C4E1050006932BC /* beaunouvelle.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545141C4E1050006932BC /* beaunouvelle.html */; };
+		7D25451D1C4E1F8A006932BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25451C1C4E1F8A006932BC /* AppDelegate.swift */; };
+		7D25451F1C4E1F8A006932BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25451E1C4E1F8A006932BC /* ViewController.swift */; };
+		7D2545221C4E1F8A006932BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545201C4E1F8A006932BC /* Main.storyboard */; };
+		7D2545241C4E1F8A006932BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545231C4E1F8A006932BC /* Assets.xcassets */; };
+		7D2545271C4E1F8A006932BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2545251C4E1F8A006932BC /* LaunchScreen.storyboard */; };
+		7D25452C1C4E1FA0006932BC /* ChatParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */; };
+		7D2545301C4E22DC006932BC /* ChatParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DE541151C4A2E6C00E58BD8 /* ChatParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DE541141C4A2E6C00E58BD8 /* ChatParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7DE5411C1C4A2E6C00E58BD8 /* ChatParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */; };
 		7DE541211C4A2E6C00E58BD8 /* ChatParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */; };
+		7DE5412D1C4A323700E58BD8 /* ChatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412C1C4A323700E58BD8 /* ChatParser.swift */; };
+		7DE5412F1C4A78B100E58BD8 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */; };
+		7DE541311C4B244200E58BD8 /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D25452D1C4E227A006932BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DE541081C4A2E6C00E58BD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DE541101C4A2E6C00E58BD8;
+			remoteInfo = ChatParser;
+		};
 		7DE5411D1C4A2E6C00E58BD8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DE541081C4A2E6C00E58BD8 /* Project object */;
@@ -22,16 +40,49 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D2545311C4E22DC006932BC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7D2545301C4E22DC006932BC /* ChatParser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7D2545141C4E1050006932BC /* beaunouvelle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = beaunouvelle.html; sourceTree = "<group>"; };
+		7D25451A1C4E1F8A006932BC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D25451C1C4E1F8A006932BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7D25451E1C4E1F8A006932BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7D2545211C4E1F8A006932BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7D2545231C4E1F8A006932BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D2545261C4E1F8A006932BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7D2545281C4E1F8A006932BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChatParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE541141C4A2E6C00E58BD8 /* ChatParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatParser.h; sourceTree = "<group>"; };
 		7DE541161C4A2E6C00E58BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DE5411B1C4A2E6C00E58BD8 /* ChatParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatParserTests.swift; sourceTree = "<group>"; };
 		7DE541221C4A2E6C00E58BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DE5412C1C4A323700E58BD8 /* ChatParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatParser.swift; sourceTree = "<group>"; };
+		7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
+		7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D2545171C4E1F8A006932BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D25452C1C4E1FA0006932BC /* ChatParser.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DE5410D1C4A2E6C00E58BD8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,11 +101,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D2545131C4E1050006932BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7D2545141C4E1050006932BC /* beaunouvelle.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7D25451B1C4E1F8A006932BC /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				7D25451C1C4E1F8A006932BC /* AppDelegate.swift */,
+				7D25451E1C4E1F8A006932BC /* ViewController.swift */,
+				7D2545201C4E1F8A006932BC /* Main.storyboard */,
+				7D2545231C4E1F8A006932BC /* Assets.xcassets */,
+				7D2545251C4E1F8A006932BC /* LaunchScreen.storyboard */,
+				7D2545281C4E1F8A006932BC /* Info.plist */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		7DE541071C4A2E6C00E58BD8 = {
 			isa = PBXGroup;
 			children = (
 				7DE541131C4A2E6C00E58BD8 /* ChatParser */,
 				7DE5411F1C4A2E6C00E58BD8 /* ChatParserTests */,
+				7D25451B1C4E1F8A006932BC /* Example */,
 				7DE541121C4A2E6C00E58BD8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +137,7 @@
 			children = (
 				7DE541111C4A2E6C00E58BD8 /* ChatParser.framework */,
 				7DE5411B1C4A2E6C00E58BD8 /* ChatParserTests.xctest */,
+				7D25451A1C4E1F8A006932BC /* Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +145,7 @@
 		7DE541131C4A2E6C00E58BD8 /* ChatParser */ = {
 			isa = PBXGroup;
 			children = (
+				7DE5412B1C4A2F8700E58BD8 /* Source */,
 				7DE541141C4A2E6C00E58BD8 /* ChatParser.h */,
 				7DE541161C4A2E6C00E58BD8 /* Info.plist */,
 			);
@@ -80,10 +155,21 @@
 		7DE5411F1C4A2E6C00E58BD8 /* ChatParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D2545131C4E1050006932BC /* Resources */,
 				7DE541201C4A2E6C00E58BD8 /* ChatParserTests.swift */,
+				7DE541301C4B244200E58BD8 /* DictionaryExtensionsTests.swift */,
 				7DE541221C4A2E6C00E58BD8 /* Info.plist */,
 			);
 			path = ChatParserTests;
+			sourceTree = "<group>";
+		};
+		7DE5412B1C4A2F8700E58BD8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7DE5412C1C4A323700E58BD8 /* ChatParser.swift */,
+				7DE5412E1C4A78B100E58BD8 /* DictionaryExtensions.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +186,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7D2545191C4E1F8A006932BC /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D2545291C4E1F8A006932BC /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				7D2545161C4E1F8A006932BC /* Sources */,
+				7D2545171C4E1F8A006932BC /* Frameworks */,
+				7D2545181C4E1F8A006932BC /* Resources */,
+				7D2545311C4E22DC006932BC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D25452E1C4E227A006932BC /* PBXTargetDependency */,
+			);
+			name = Example;
+			productName = Example;
+			productReference = 7D25451A1C4E1F8A006932BC /* Example.app */;
+			productType = "com.apple.product-type.application";
+		};
 		7DE541101C4A2E6C00E58BD8 /* ChatParser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DE541251C4A2E6C00E58BD8 /* Build configuration list for PBXNativeTarget "ChatParser" */;
@@ -142,10 +247,13 @@
 		7DE541081C4A2E6C00E58BD8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Beau Nouvelle";
 				TargetAttributes = {
+					7D2545191C4E1F8A006932BC = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					7DE541101C4A2E6C00E58BD8 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -160,6 +268,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 7DE541071C4A2E6C00E58BD8;
 			productRefGroup = 7DE541121C4A2E6C00E58BD8 /* Products */;
@@ -168,11 +277,22 @@
 			targets = (
 				7DE541101C4A2E6C00E58BD8 /* ChatParser */,
 				7DE5411A1C4A2E6C00E58BD8 /* ChatParserTests */,
+				7D2545191C4E1F8A006932BC /* Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D2545181C4E1F8A006932BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D2545271C4E1F8A006932BC /* LaunchScreen.storyboard in Resources */,
+				7D2545241C4E1F8A006932BC /* Assets.xcassets in Resources */,
+				7D2545221C4E1F8A006932BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DE5410F1C4A2E6C00E58BD8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,16 +304,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D2545151C4E1050006932BC /* beaunouvelle.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D2545161C4E1F8A006932BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D25451F1C4E1F8A006932BC /* ViewController.swift in Sources */,
+				7D25451D1C4E1F8A006932BC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DE5410C1C4A2E6C00E58BD8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE5412D1C4A323700E58BD8 /* ChatParser.swift in Sources */,
+				7DE5412F1C4A78B100E58BD8 /* DictionaryExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,12 +334,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE541211C4A2E6C00E58BD8 /* ChatParserTests.swift in Sources */,
+				7DE541311C4B244200E58BD8 /* DictionaryExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7D25452E1C4E227A006932BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DE541101C4A2E6C00E58BD8 /* ChatParser */;
+			targetProxy = 7D25452D1C4E227A006932BC /* PBXContainerItemProxy */;
+		};
 		7DE5411E1C4A2E6C00E58BD8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7DE541101C4A2E6C00E58BD8 /* ChatParser */;
@@ -215,7 +353,52 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7D2545201C4E1F8A006932BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D2545211C4E1F8A006932BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7D2545251C4E1F8A006932BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D2545261C4E1F8A006932BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7D25452A1C4E1F8A006932BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.Example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7D25452B1C4E1F8A006932BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.Example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7DE541231C4A2E6C00E58BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -308,28 +491,33 @@
 		7DE541261C4A2E6C00E58BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ChatParser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.ChatParser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7DE541271C4A2E6C00E58BD8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ChatParser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.ChatParser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = ChatParserTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.ChatParserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -351,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = ChatParserTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nouvelle.ChatParserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -360,6 +550,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D2545291C4E1F8A006932BC /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D25452A1C4E1F8A006932BC /* Debug */,
+				7D25452B1C4E1F8A006932BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7DE5410B1C4A2E6C00E58BD8 /* Build configuration list for PBXProject "ChatParser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -376,6 +574,7 @@
 				7DE541271C4A2E6C00E58BD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DE541281C4A2E6C00E58BD8 /* Build configuration list for PBXNativeTarget "ChatParserTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +583,7 @@
 				7DE5412A1C4A2E6C00E58BD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
