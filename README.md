@@ -6,7 +6,7 @@ Fully tested and documented API.
 ##Example Project##
 Download the source code and run the example app to see ChatParser in action.
 
-![screenshot](/Example/examplescreen.png)
+![screenshot](ChatParser/ChatParser/Example/examplescreen.png)
 
 ##Usage##
 After linking the *ChatParser.framework* to your app you can start parsing your chat text using a single function.
