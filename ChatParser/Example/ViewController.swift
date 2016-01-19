@@ -26,7 +26,7 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        ChatParser().extractContent(.Any, fromString: textField.text!) { (prettyJSON) -> () in
+        ChatParser().extractContent(.Any, .Mentions, fromString: textField.text!) { (prettyJSON) -> () in
             if let prettyJSON = prettyJSON {
                 self.outputTextView.text = prettyJSON
             }
