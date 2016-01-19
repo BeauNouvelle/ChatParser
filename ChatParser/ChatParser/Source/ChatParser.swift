@@ -8,14 +8,17 @@
 
 import Foundation
 
-struct ChatParser {
+public struct ChatParser {
     
-    enum Content {
+    public enum Content {
         case Mentions
         case Emoticons
         case Links
         case Any
     }
+    
+    public var prettyJSON: String?
+    public var JSON: String?
     
     /**
      Parses chat text and pulls out any combination of @username's, (emoticons), links and web page titles.
@@ -23,22 +26,37 @@ struct ChatParser {
      - parameter string: The `string` you wish to extract the content from.
      - returns: A string in JSON format.
     */
-    func extractContent(content: Content..., fromString string: String) -> String? {
+    public init(extractContent content: Content..., fromString string: String) {
         
         var jsonDictionary = [String:AnyObject]()
         
         if content.contains([.Mentions, .Any].contains) {
-            jsonDictionary["mentions"] = extractMentions(fromString: string)
+            if let mentions = extractMentions(fromString: string) {
+                jsonDictionary["mentions"] = mentions
+            }
         }
         if content.contains([.Emoticons, .Any].contains) {
-            jsonDictionary["emoticons"] = extractEmoticons(fromString: string)
+            if let emoticons = extractEmoticons(fromString: string) {
+                jsonDictionary["emoticons"] = emoticons
+            }
         }
         if content.contains([.Links, .Any].contains) {
-            jsonDictionary["links"] = extractLinks(fromString: string)
+            if let links = extractWebData(fromString: string) {
+                print(links)
+                jsonDictionary["links"] = links
+            }
         }
-        return jsonDictionary.jsonString
+        
+        prettyJSON = jsonDictionary.prettyJSON    // Pretty format to match the brief.
+        JSON = jsonDictionary.JSON                // another for good luck.
     }
 
+    // MARK: - Private Functions -
+    /**
+     Extracts all mentions found in a given string that are prefixed with an @ symbol. eg. @beaunouvelle
+     - parameter string: The `string` you wish to extract a list of mentions from.
+     - returns: An `array` of extracted strings matching the @username format.
+    */
     private func extractMentions(fromString string: String) -> [String]? {
         let regexPattern = "\\B@([a-z0-9_-]+)"
         let mentions = performRegexOnString(string, withPattern: regexPattern)
@@ -46,6 +64,11 @@ struct ChatParser {
         return mentions?.count > 0 ? mentions : nil
     }
     
+    /**
+     Extracts any words in a given string that are encapsulated by parenthesis. eg. "(megusta)"
+     - parameter string: The `string` you wish to extract a list of emoticons from.
+     - returns: An `array` of extracted strings matching the (emoticon) format.
+     */
     private func extractEmoticons(fromString string: String) -> [String]? {
         let regexPattern = "\\(([^\\s][^\\)]+)\\)"
         let emoticons = performRegexOnString(string, withPattern: regexPattern)
@@ -53,11 +76,16 @@ struct ChatParser {
         return emoticons?.count > 0 ? emoticons : nil
     }
     
-    private func extractLinks(fromString string: String) -> [[String:AnyObject]]? {
+    /**
+     Extracts any webpage links found in a given string including the page titles for each link.
+     - parameter string: 
+     - returns: An 'array' of dictionary objects containing both a webpage link and webpage title if it can be found.
+    */
+    private func extractWebData(fromString string: String) -> [[String:AnyObject]]? {
         let regexPattern = "\\b((?:https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])"
         var links = [[String:AnyObject]]()
         
-        guard let urls = performRegexOnString(string, withPattern: regexPattern) else {
+        guard let urls = performRegexOnString(string, withPattern: regexPattern) where urls.count > 0 else {
             return nil
         }
         
@@ -72,9 +100,9 @@ struct ChatParser {
                 print(pageTitle)
                 linkContent["title"] = pageTitle
             } catch {
-                // TODO: Work out requirements for what happens when we can't load a URL. Currently only the link will be returned for that url. No title if it won't load.
+                // TODO: Work out requirements for what happens when we can't load a URL. 
+                // Currently only the link will be returned for that url. No title if it won't load.
             }
-            
             links.append(linkContent)
         }
         return links
@@ -85,7 +113,7 @@ struct ChatParser {
      - parameter html: The html string you wish to extract the title from.
      - returns: The page title if one is found, otherwise returns nil.
     */
-    func extractPageTitle(html: NSString) -> String? {
+    private func extractPageTitle(html: NSString) -> String? {
         let start = "<title>"
         let end = "</title>"
         
@@ -119,7 +147,7 @@ struct ChatParser {
         } catch {
             return nil
         }
-        return results
+        return results.count > 0 ? results : nil
     }
     
     private func rangeFromNSRange(nsRange: NSRange, forString str: String) -> Range<String.Index>? {

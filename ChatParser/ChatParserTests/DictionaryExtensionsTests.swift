@@ -24,7 +24,7 @@ class DictionaryExtensionsTests: XCTestCase {
     func testJSONStringFromDictionary() {
         let input = ["This":NSNumber(int: 4)]
         let expectedOutput = "{\n  \"This\" : 4\n}"
-        XCTAssertEqual(input.jsonString, expectedOutput)
+        XCTAssertEqual(input.prettyJSON, expectedOutput)
     }
 
     
